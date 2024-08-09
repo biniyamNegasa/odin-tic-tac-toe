@@ -20,6 +20,8 @@ end
 
 winner_found = false
 
+puts 'TIC___TAC___TOE'
+puts
 puts 'Here is the map of each position'
 Board.default_display
 
@@ -43,14 +45,20 @@ board.display
     if ind.zero?
       board.add(row, col, player1.symbol)
       player1.append(new_value + 1)
-      if WINNING_COMBINATIONS.include?(player1.choices.sort)
+      filtered = WINNING_COMBINATIONS.select do |list|
+        (list & player1.choices).length == 3
+      end
+      unless filtered.empty?
         winner_found = true
         puts 'The Winner is Player 1'
       end
     else
       board.add(row, col, player2.symbol)
       player2.append(new_value + 1)
-      if WINNING_COMBINATIONS.include?(player2.choices.sort)
+      filtered = WINNING_COMBINATIONS.select do |list|
+        (list & player2.choices).length == 3
+      end
+      unless filtered.empty?
         winner_found = true
         puts 'The Winner is Player 2'
       end
