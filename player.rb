@@ -10,6 +10,6 @@ class Player
   end
 
   def append(choice)
-    choices.push(choice)
+    @choices.push(choice)
   end
 end
